@@ -42,6 +42,8 @@ GEM
     ast (2.3.0)
     autoprefixer-rails (6.3.6)
       execjs
+    av (0.9.0)
+      cocaine (~> 0.5.3)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -178,6 +180,12 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+    paperclip-av-transcoder (0.6.4)
+      av (~> 0.9.0)
+      paperclip (>= 2.5.2)
+    paperclip-ffmpeg (1.2.0)
+      paperclip (>= 2.5.2)
+      rails
     private_pub (1.0.3)
       faye
     rack (1.6.4)
@@ -288,6 +296,8 @@ DEPENDENCIES
   omniauth-linkedin
   omniauth-twitter
   paperclip
+  paperclip-av-transcoder
+  paperclip-ffmpeg
   private_pub
   rails (= 4.2.6)
   remotipart

@@ -1,24 +1,24 @@
 class VideosController < ApplicationController
 	before_filter :authenticate_user!
 
-	def index
-		if params[:q].blank?
-	  	@videos = Video.order('created_at DESC')
-	  else
-	    videos = Video.search params[:q]
-	    @videos = videos.to_a
-	  end
-	end
+  def index
+    if params[:q].blank?
+      @videos = Video.order('created_at DESC')
+    else
+      videos = Video.search params[:q]
+      @videos = videos.to_a
+    end
+  end
 
 	def new
 	  @video = Video.new
 	end
 
 	def download_video
-		@video = Video.find(params[:id])
-		YoutubeDL.download @video.link
-		flash[:notice] = 'Video download successfuly.'
-		redirect_to videos_path
+    @video = Video.find(params[:id])
+    YoutubeDL.download @video.link if @video.duration.present?
+    flash[:notice] = 'Video download successfuly.'
+    redirect_to videos_path
 	end
 
 	def create
@@ -31,8 +31,8 @@ class VideosController < ApplicationController
 	  end
 	end
 
-	def video_params
-		params.require(:video).permit(:link)
-	end
+  def video_params
+    params.require(:video).permit(:link, :clip, :title, :author)
+  end
 
 end

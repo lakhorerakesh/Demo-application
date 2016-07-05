@@ -19,7 +19,6 @@
     <% end %>
   </div>
 </div>
-
 <% if @videos.any? %>
   <div class="container">
     <h1>Latest videos</h1>
@@ -29,14 +28,17 @@
           <% if video %>
             <div class="col-md-4">
               <div class="flex-video widescreen">
-                <iframe src="<%= video.embed_link %>" frameborder="0" allowfullscreen="">
-                </iframe>
+                <% if  video.duration.blank? %>
+                  <%= video_tag video.clip.url(:medium), controls: true, :width=>"300", :height=>"150" %>
+                <% else %>
+                  <iframe src="<%= video.embed_link %>" frameborder="0" allowfullscreen="">
+                  </iframe>
+                <% end %>
               </div>
               <div class="caption">
                 <%= link_to "Download", download_video_video_path(video), :class=>"glyphicon glyphicon-cloud-download btn btn-default"  %>
                 <h5><%= video.title %></h5>
                 <p>Author: <b><%= video.author %></b></p>
-                <p>Duration: <b><%= video.duration %></b></p>
               </div>
             </div>
           <% end %>
