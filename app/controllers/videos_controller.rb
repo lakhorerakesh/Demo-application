@@ -8,7 +8,6 @@ class VideosController < ApplicationController
 	    videos = Video.search params[:q]
 	    @videos = videos.to_a
 	  end
-		
 	end
 
 	def new
@@ -16,9 +15,10 @@ class VideosController < ApplicationController
 	end
 
 	def download_video
-		@video = Video.find(params[:video])
+		@video = Video.find(params[:id])
 		YoutubeDL.download @video.link
-		redirect_to root_url
+		flash[:notice] = 'Video download successfuly.'
+		redirect_to videos_path
 	end
 
 	def create
