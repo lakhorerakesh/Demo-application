@@ -1,0 +1,34 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+    <% heading = params[:action] == 'new' ? "Create Product" : "Edit #{@product.name}" %>
+    <h3><%= heading %></h3>
+  </div>
+    <%= form_for @product, remote: true, html: { style: "display:inline;" } do |f| %>
+      <div class="modal-body">
+        <ul class="errors"></ul>
+
+        <div class="form-group">
+          <%= f.label :name, class:"control-label" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :price, class: "control-label" %>
+          <%= f.text_field :price, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :image, class: "control-label" %>
+          <%= f.file_field :image, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "Product Description", class: "control-label" %>
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit class: "btn btn-primary" %>
+        <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+      </div>
+    <% end %>
+  </div>
+</div>
