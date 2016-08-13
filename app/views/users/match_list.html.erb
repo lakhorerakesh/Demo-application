@@ -1,0 +1,23 @@
+<div class="container">
+  <!-- Page Heading -->
+  <div class="row">
+      <div class="col-lg-12">
+          <h1 class="page-header">Current Matches
+              <small>Live Scores</small>
+          </h1>
+      </div>
+  </div>
+  <% @matches.each do |match| %>
+    <div class="row">
+      <div class="col-md-5">
+          <h3><%= match["description"] %></h3>
+          <h4>Subheading</h4>
+          <p><%= match["title"] %></p>
+          <a class="btn btn-primary" href="<%= live_score_path(match_id: match["unique_id"])%>">Live Score<span class="glyphicon glyphicon-chevron-right"></span></a>
+      </div>
+    </div>
+  <% end %>
+  <hr>
+</div>
+
+      

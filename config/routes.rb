@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages
   end
+
+  get 'match_list' => 'users#match_list'
+  get 'live_score' => 'users#live_score'
 end
